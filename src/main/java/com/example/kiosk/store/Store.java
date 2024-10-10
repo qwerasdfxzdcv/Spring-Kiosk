@@ -1,4 +1,7 @@
 package com.example.kiosk.store;
+
+import ch.qos.logback.core.util.StringUtil;
+
 // 가게 1번
 // name : 매머드 커피
 // address : 서울
@@ -17,6 +20,13 @@ public class Store {
     private int storeOpentime;
     private int storeClosetime;
     private final int storeId;
+    public Store update(StoreRequest request){
+        if(!StringUtil.isNullOrEmpty(request.storeName()))
+            storeName = request.storeName();
+        if(!request.storeAddress().isEmpty())
+            this.storeAddress = request.storeAddress();
+        return this;
+    }
 
     public Store(String storeName, String storeAddress, int storeOpentime, int storeClosetime) {
         this.storeName = storeName;
