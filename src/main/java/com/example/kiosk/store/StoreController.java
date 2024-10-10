@@ -27,6 +27,16 @@ import java.util.Optional;
     2. 명사만 사용ㅇ
     3. 소문자로 작성
     4. 언더바(_) 대신 하이픈(-) 사용
+
+    http 통신 상에서
+    성공했다. 실패했다. 하긴 했는데 변화가 없다.
+    -> 이러한 것을 표시하기 위해 status code 로 표현함
+    100 =<  >200 socket
+    200 =<  >300 http 통신 (대부분 성공)
+    300 =<  >400 html 사용 시 (Found, Redirect)
+    400 =<  >500 클라이언트 실수 (404 not found, 401 권한 없음)
+    500 =<  >600 서버측 실수 (500 internal server error)
+
  */
 
 @RestController
@@ -43,7 +53,7 @@ public class StoreController {
                 .filter(el -> el.getStoreId() == id)
                 .findFirst();
         // 비어 있을경우 에러 발생 <- 검사하는 부분 있을경우 더욱 단단한 코드
-        if(first.isEmpty()) throw new RuntimeException();
+        if(first.isEmpty()) throw new StoreNotFound(id);
         return first.get();
     }
     @DeleteMapping("/{id}")
