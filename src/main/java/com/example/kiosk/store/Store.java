@@ -21,6 +21,7 @@ public class Store {
     private int storeClosetime;
     private final int storeId;
     private boolean isDeleted;
+    private int storeKioskCount=1;
 
     public Store update(StoreRequest request){
         if(!StringUtil.isNullOrEmpty(request.storeName()))
@@ -28,6 +29,10 @@ public class Store {
         if(!request.storeAddress().isEmpty())
             this.storeAddress = request.storeAddress();
         return this;
+    }
+
+    public int incresKioskCount() {
+        return ++storeKioskCount;
     }
 
     public void delete(){
@@ -39,8 +44,9 @@ public class Store {
         this.storeAddress = storeAddress;
         this.storeOpentime = storeOpentime;
         this.storeClosetime = storeClosetime;
-        this.storeId = ++Utils.storeCount;
+        this.storeId = Utils.storeCount++;
         this.isDeleted = false;
+        this.storeKioskCount=0;
     }
 
     public boolean isDeleted() {
