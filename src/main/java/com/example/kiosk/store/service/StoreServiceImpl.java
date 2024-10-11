@@ -1,5 +1,10 @@
-package com.example.kiosk.store;
+package com.example.kiosk.store.service;
 
+import com.example.kiosk.store.domain.Store;
+import com.example.kiosk.store.exception.StoreNotFoundException;
+import com.example.kiosk.store.request.StoreRequest;
+import com.example.kiosk.store.request.StoreResponse;
+import com.example.kiosk.store.util.Utils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

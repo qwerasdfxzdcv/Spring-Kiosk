@@ -1,6 +1,7 @@
 package com.example.kiosk.kiosk;
 
-import com.example.kiosk.store.*;
+import com.example.kiosk.store.exception.StoreNotFoundException;
+import com.example.kiosk.store.util.Utils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

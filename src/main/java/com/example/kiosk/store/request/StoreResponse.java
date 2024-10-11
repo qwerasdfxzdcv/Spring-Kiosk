@@ -1,4 +1,6 @@
-package com.example.kiosk.store;
+package com.example.kiosk.store.request;
+
+import com.example.kiosk.store.domain.Store;
 
 public record StoreResponse(String storeName, String storeAddress, int storeId, int storeOpentime, int storeClosetime) {
     public static StoreResponse from(Store store){

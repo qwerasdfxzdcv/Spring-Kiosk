@@ -1,4 +1,4 @@
-package com.example.kiosk.store;
+package com.example.kiosk.store.exception;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

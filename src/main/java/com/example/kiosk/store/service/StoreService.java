@@ -1,7 +1,8 @@
-package com.example.kiosk.store;
+package com.example.kiosk.store.service;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.example.kiosk.store.domain.Store;
+import com.example.kiosk.store.request.StoreRequest;
+import com.example.kiosk.store.request.StoreResponse;
 
 import java.util.List;
 

@@ -1,5 +1,7 @@
-package com.example.kiosk.store;
+package com.example.kiosk.store.config;
 
+import com.example.kiosk.store.service.StoreService;
+import com.example.kiosk.store.service.StoreServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

@@ -1,5 +1,11 @@
-package com.example.kiosk.store;
+package com.example.kiosk.store.controller;
 
+import com.example.kiosk.store.domain.Store;
+import com.example.kiosk.store.exception.StoreNotFoundException;
+import com.example.kiosk.store.request.StoreRequest;
+import com.example.kiosk.store.request.StoreResponse;
+import com.example.kiosk.store.service.StoreServiceImpl;
+import com.example.kiosk.store.util.Utils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

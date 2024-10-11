@@ -1,6 +1,8 @@
-package com.example.kiosk.store;
+package com.example.kiosk.store.domain;
 
 import ch.qos.logback.core.util.StringUtil;
+import com.example.kiosk.store.request.StoreRequest;
+import com.example.kiosk.store.util.Utils;
 
 // 가게 1번
 // name : 매머드 커피

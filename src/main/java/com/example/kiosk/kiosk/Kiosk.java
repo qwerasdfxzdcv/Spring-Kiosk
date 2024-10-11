@@ -1,9 +1,7 @@
 package com.example.kiosk.kiosk;
 
-import ch.qos.logback.core.util.StringUtil;
-import com.example.kiosk.store.Store;
-import com.example.kiosk.store.StoreRequest;
-import com.example.kiosk.store.Utils;
+import com.example.kiosk.store.domain.Store;
+import com.example.kiosk.store.util.Utils;
 
 public class Kiosk {
     private final int kioskId;
