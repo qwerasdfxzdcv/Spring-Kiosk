@@ -1,9 +1,9 @@
 package com.example.kiosk.store;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 /*
     restful api
@@ -36,25 +36,27 @@ import java.util.Optional;
     300 =<  >400 html 사용 시 (Found, Redirect)
     400 =<  >500 클라이언트 실수 (404 not found, 401 권한 없음)
     500 =<  >600 서버측 실수 (500 internal server error)
-
  */
-
+@RequestMapping("/stores")
 @RestController
 public class StoreController {
+    private final StoreServiceImpl storeServiceImpl;
+    public StoreController(StoreServiceImpl storeServiceImpl) {
+        this.storeServiceImpl = new StoreServiceImpl();
+    }
     @GetMapping
-    public List<Store> getAllStores() {
-        return Utils.stores;
+    public List<StoreResponse> getAllStores() {
+        return storeServiceImpl.getAllStores();
     }
     @GetMapping("/{id}")
     public Store getStoreById(@PathVariable int id) {
         // Optional<> <- 혹시라도 null 이 될 수 있는 값일때 사용
-        Optional<Store> first = Utils.stores
+        return  Utils.stores
                 .stream()
                 .filter(el -> el.getStoreId() == id)
-                .findFirst();
+                .findFirst()
+                .orElseThrow(()->new StoreNotFoundException(id));
         // 비어 있을경우 에러 발생 <- 검사하는 부분 있을경우 더욱 단단한 코드
-        if(first.isEmpty()) throw new StoreNotFound(id);
-        return first.get();
     }
     @DeleteMapping("/{id}")
     public void deleteStoreById(@PathVariable int id) {
@@ -67,24 +69,12 @@ public class StoreController {
     }
     // get 방식은 body 가 없고 post 방식은 body 가 있다
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Store saveStore(
         @RequestBody StoreRequest request
     ) {
         Store store = request.toStore();
         Utils.stores.add(store);
         return store;
-    }
-
-    public static void main(String[] args) {
-        Store store = new Store("매머드", "서울", 7, 21);
-        Store store2 = new Store("깐부", "서울", 11, 1);
-        Utils.stores.add(store);
-        Utils.stores.add(store2);
-        List<Store> allStores = new StoreController().getAllStores();
-        for(int i = 0; i < allStores.size(); i++) {
-            if(!Utils.stores.get(i).equals(allStores.get(i)))
-                throw new RuntimeException();
-        }
-        System.out.println("굳 잡");
     }
 }

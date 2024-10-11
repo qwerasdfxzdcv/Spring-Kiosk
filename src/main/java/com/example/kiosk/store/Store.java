@@ -20,6 +20,8 @@ public class Store {
     private int storeOpentime;
     private int storeClosetime;
     private final int storeId;
+    private boolean isDeleted;
+
     public Store update(StoreRequest request){
         if(!StringUtil.isNullOrEmpty(request.storeName()))
             storeName = request.storeName();
@@ -28,12 +30,21 @@ public class Store {
         return this;
     }
 
+    public void delete(){
+        isDeleted = true;
+    }
+
     public Store(String storeName, String storeAddress, int storeOpentime, int storeClosetime) {
         this.storeName = storeName;
         this.storeAddress = storeAddress;
         this.storeOpentime = storeOpentime;
         this.storeClosetime = storeClosetime;
         this.storeId = ++Utils.storeCount;
+        this.isDeleted = false;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
     }
 
     public String getStoreName() {
